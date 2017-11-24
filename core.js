@@ -190,7 +190,7 @@ function getAllUnicode(s) {
     else return allUnicode;
 }
 
-function translate(input , smart) {
+this.translate=function translate(input , smart) {
     var beginIndex = 0;
     var endIndex = -1;
     var engTokens = new Object;
