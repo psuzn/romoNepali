@@ -88,6 +88,11 @@ def on_release(key):
 		pressBackspace(1)
 
 
+	if key is Key.backspace:
+		print("backspace is pressed handelling it")
+		rawKeys=""
+		unicodeTyped=0;
+
 	if type(key) is not Key or key is Key.space:
 		if key is Key.space:
 			rawKeys=""
