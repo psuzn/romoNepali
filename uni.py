@@ -1,4 +1,4 @@
-import requests,time
+import requests,time,sys
 import subprocess as sp
 from pynput.keyboard import Key, Controller,Listener
 
@@ -11,8 +11,12 @@ unicodeTyped=0
 first=True
 noOfSpaces=0
 noOfBackSpaces=0
-
+vv=False
 nodeServer="";
+
+def mvv(*message):
+	if(vv):
+		print(message)
 
 def startNodeServer():
 	global nodeServer
@@ -65,26 +69,22 @@ def typeConverted():
 		raise KeyboardInterrupt
 
 
-
-
-
-
 def on_release(key):
 	global rawKeys,unicodeTyped,emulated,noOfSpaces,noOfBackSpaces
 
 	if noOfSpaces>0 and key is Key.space:
 		noOfSpaces=noOfSpaces-1
-		print("emulated key:",str(key))
+		mvv("emulated key:",str(key))
 		return True
 
 	if noOfBackSpaces>0 and key is Key.backspace:
 		noOfBackSpaces=noOfBackSpaces-1
-		print("emulated key:",str(key))
+		mvv("emulated key:",str(key))
 		return True
 
 
 	if emulated:
-		print("emulated key:",str(key))
+		mvv("emulated key:",str(key))
 		return True
 
 	emulated=True
@@ -97,7 +97,7 @@ def on_release(key):
 
 
 	if key is Key.backspace:
-		print("backspace is pressed handelling it")
+		mvv("backspace is pressed handelling it")
 		rawKeys=""
 		unicodeTyped=0;
 
@@ -113,7 +113,10 @@ def on_release(key):
 
 
 def main():
+	global vv
 	print("started listning..")
+	if "-v" in sys.argv[1:]:
+		vv=True
 	with Listener(on_release=on_release) as listener:
 		listener.join()
 
@@ -127,9 +130,11 @@ try:
 		else:
 			print(" node server cant be started\n   exiting..  ")
 except KeyboardInterrupt:
-	if nodeServer.poll() is None:
-		nodeServer.terminate()
 	keyboard.release(Key.ctrl)
 	keyboard.release(Key.shift)
 	keyboard.release(Key.enter)
 	keyboard.release(Key.backspace)
+
+finally:
+	if nodeServer.poll() is None:
+		nodeServer.terminate()
