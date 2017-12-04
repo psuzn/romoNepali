@@ -1,4 +1,5 @@
 import requests,time
+import subprocess as sp
 from pynput.keyboard import Key, Controller,Listener
 
 keyboard =Controller()
@@ -10,6 +11,12 @@ unicodeTyped=0
 first=True
 noOfSpaces=0
 noOfBackSpaces=0
+
+nodeServer="";
+
+def startNodeServer():
+	global nodeServer
+	nodeServer=sp.Popen(["node","uni.js"],stdout=sp.PIPE,stderr=sp.PIPE,encoding='utf-8')
 
 def typeUnicode(code):
 
@@ -53,12 +60,9 @@ def typeConverted():
 						lastRegularkey=c;
 						typeRegular(c)
 
-	except Exception as e: 
-		keyboard.release(Key.ctrl)
-		keyboard.release(Key.shift)
-		keyboard.release(Key.enter)
-		keyboard.release(Key.backspace)
+	except: 
 		print("error occurred")
+		raise KeyboardInterrupt
 
 
 
@@ -84,6 +88,10 @@ def on_release(key):
 		return True
 
 	emulated=True
+	if nodeServer.poll() is not None:
+		print(" node server is not running\n   exiting..  ")
+		exit()
+
 	if type(key) is not Key:
 		pressBackspace(1)
 
@@ -109,5 +117,19 @@ def main():
 	with Listener(on_release=on_release) as listener:
 		listener.join()
 
-if __name__ == '__main__':
-	main()
+try:
+	if __name__ == '__main__':
+		print("starting a node nodeServer at {} ".format(port))
+		startNodeServer()
+		if nodeServer.poll() == None:
+			print("  done.. ")
+			main()
+		else:
+			print(" node server cant be started\n   exiting..  ")
+except KeyboardInterrupt:
+	if nodeServer.poll() is None:
+		nodeServer.terminate()
+	keyboard.release(Key.ctrl)
+	keyboard.release(Key.shift)
+	keyboard.release(Key.enter)
+	keyboard.release(Key.backspace)
