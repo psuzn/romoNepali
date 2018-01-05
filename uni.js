@@ -1,6 +1,11 @@
 var core = require("./core.js");
-var http = require('http');
-var qs = require('querystring');
+try{
+  var http = require('http');
+  var qs = require('querystring');
+}
+catch (err){
+  exit(1);
+}
 
 http.createServer(function (req, res) {
 
@@ -15,9 +20,9 @@ http.createServer(function (req, res) {
       var converted=core.translate(data.data,data.smartConvert);
       res.end(converted);
 
-       console.log("raw input:"+data.data);
-       console.log("converting with smartConvert="+data.smartConvert);
-      console.log("send after converted"+converted+"|");
+      //  console.log("raw input:"+data.data);
+      //  console.log("converting with smartConvert="+data.smartConvert);
+      // console.log("send after converted"+converted+"|");
     });
   } else {
     res.writeHead(404);
