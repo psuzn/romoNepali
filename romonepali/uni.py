@@ -1,4 +1,8 @@
-pip_modules=["requests","pynput"]
+#Constants
+PORT=8058 #port for the node server
+SMARTCONVERT=True; #smart convert
+PIPMODULES=["requests","pynput"]
+
 try:
 	import requests,time,sys
 	import subprocess as sp
@@ -9,12 +13,8 @@ except ImportError: #detection of modules
 	for module in pip_modules:
 		print(" {}".format(module))
 	exit()
-#Constants
-PORT=8058 #port for the node server
-SMARTCONVERT=True; #smart convert
 
 #global variables
-keyboard =Controller()
 emulated=False #to detect the emulated key presses
 rawKeys="" #the unconverted keystrokes
 unicodeTyped=0 #track of unicode letter tyoed to handel the backsoace and other
@@ -125,15 +125,17 @@ def main():
 		listener.join()
 
 def init():
+	global keyboard
 	try:
 		print("starting a node nodeServer at {} ".format(PORT))
 		startNodeServer() #start the nodeserver
+		keyboard =Controller()
 		time.sleep(0.5)
 		if nodeServer.poll() == None: #check if node server is started
 			print("  started.. ")
 			main()
 		else:
-			print(" node server can't be started ..  ")
+			print("node server can't be started ..  ")
 			print('Make sure that node module "romonisednepali" is installed globally')
 			exit()
 
@@ -147,4 +149,3 @@ def init():
 		if nodeServer:
 			if nodeServer.poll() is None:
 				nodeServer.terminate() #if any error occurred kill the nodeserver
-
