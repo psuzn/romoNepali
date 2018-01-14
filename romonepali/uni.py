@@ -22,7 +22,6 @@ first=True #in some browser(chrome backspace has to be typed twice for first let
 noOfSpaces=0 #track for no of space typed  for detection of emulated backspace key
 noOfBackSpaces=0  #track for no of backspace space typed  for detection of emulated backspace key
 vv=False #verbosa output
-nodeServer=""; #node server child process
 
 def mvv(*message): #print the message if -v flag is given 
 	if(vv):
@@ -127,7 +126,7 @@ def main():
 
 def init():
 	try:
-		print("starting a node nodeServer at {} ".format(port))
+		print("starting a node nodeServer at {} ".format(PORT))
 		startNodeServer() #start the nodeserver
 		time.sleep(0.5)
 		if nodeServer.poll() == None: #check if node server is started
@@ -135,15 +134,17 @@ def init():
 			main()
 		else:
 			print(" node server can't be started ..  ")
-			print('Make sure that node module "romonisednepali" is installed globally)
+			print('Make sure that node module "romonisednepali" is installed globally')
 			exit()
 
-except KeyboardInterrupt:
-	keyboard.release(Key.ctrl)
-	keyboard.release(Key.shift)
-	keyboard.release(Key.enter)
-	keyboard.release(Key.backspace)
+	except KeyboardInterrupt:
+		keyboard.release(Key.ctrl)
+		keyboard.release(Key.shift)
+		keyboard.release(Key.enter)
+		keyboard.release(Key.backspace)
 
-finally:
-	if nodeServer.poll() is None:
-		nodeServer.terminate() #if any error occurred kill the nodeserver
+	finally:
+		if nodeServer:
+			if nodeServer.poll() is None:
+				nodeServer.terminate() #if any error occurred kill the nodeserver
+
