@@ -9,11 +9,13 @@ except ImportError: #detection of modules
 	for module in pip_modules:
 		print(" {}".format(module))
 	exit()
+#Constants
+PORT=8058 #port for the node server
+SMARTCONVERT=True; #smart convert
 
+#global variables
 keyboard =Controller()
-port=1234 #port for the node server
 emulated=False #to detect the emulated key presses
-smartConvert=True; #smart convert
 rawKeys="" #the unconverted keystrokes
 unicodeTyped=0 #track of unicode letter tyoed to handel the backsoace and other
 first=True #in some browser(chrome backspace has to be typed twice for first letter)
@@ -43,20 +45,17 @@ def typeUnicode(code): #tyoe the unicode character corresponding to unicode valu
 def typeRegular(key):
 	keyboard.type(key) 
 
-def pressBackspace(no=1): #just press backspace noof time
+def pressBackspace(no=1): #press backspace noof time
 	global noOfBackSpaces
 	for i in range(0,no):
 		keyboard.press(Key.backspace)
 		noOfBackSpaces+=2 #why?,i dont know but one backspace press is is registered as 2 
 		keyboard.release(Key.backspace)
 
-
-
-
 def typeConverted(): #convert the rawinput to corresponding unicode value and type it
 	global unicodeTyped,emulated
 	try:
-		r = requests.post("http://localhost:{}".format(port), data={"smartConvert":smartConvert,"data":rawKeys}) #request for thr node server
+		r = requests.post("http://localhost:{}".format(PORT), data={"smartConvert":SMARTCONVERT,"data":rawKeys}) #request for thr node server
 		pressBackspace(no=unicodeTyped)
 		unicodeTyped=0;
 		for c in r.text.split("#"):
