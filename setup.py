@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='pyapk',
+    name='romonepali',
     packages=find_packages(),
     version='0.0.1',
     license='MIT',
@@ -24,6 +24,6 @@ setup(
         'Programming Language :: Python :: 3'],
     entry_points={
         'console_scripts': [
-            'romonepali = romonepali.romonepali:init'
+            'romonepali = romonepali.uni:init'
         ]},
 )
