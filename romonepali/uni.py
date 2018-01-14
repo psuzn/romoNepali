@@ -30,7 +30,7 @@ def mvv(*message): #print the message if -v flag is given
 
 def startNodeServer(): #start the node server without any logging on console
 	global nodeServer
-	nodeServer=sp.Popen(["node","uni.js"],stdout=sp.PIPE,stderr=sp.PIPE,encoding='utf-8')
+	nodeServer=sp.Popen(["romonisednepali",],stdout=sp.PIPE,stderr=sp.PIPE,encoding='utf-8')
 
 def typeUnicode(code): #tyoe the unicode character corresponding to unicode value with Ctrl+Shift+u and unicode value (in hex)
 	keyboard.press(Key.ctrl)
@@ -125,8 +125,8 @@ def main():
 	with Listener(on_release=on_release) as listener: #listen the keypresses
 		listener.join()
 
-try:
-	if __name__ == '__main__':
+def init():
+	try:
 		print("starting a node nodeServer at {} ".format(port))
 		startNodeServer() #start the nodeserver
 		time.sleep(0.5)
@@ -134,13 +134,8 @@ try:
 			print("  started.. ")
 			main()
 		else:
-			print(" node server can't be started\n required modules might not be installed ..  ")
-			print("[Required modules for node]:")
-			for module in npm_modules:
-				print(" {}".format(module))
-			print("\n#process to install")
-			for line in npm_installInstructions:
-				print(" {}".format(line))
+			print(" node server can't be started ..  ")
+			print('Make sure that node module "romonisednepali" is installed globally)
 			exit()
 
 except KeyboardInterrupt:
