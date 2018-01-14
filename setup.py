@@ -7,11 +7,13 @@ setup(
     license='MIT',
     description='A simple program to install apks from a directory to android phone via adbSmall python program to install all apks on a directory(including apks in sub-directory of it) in your pc to android phones.',
     author='Sujan Poudel',
-    author_email='psuzzn@gmail.com',
-    url='https://github.com/psuzn/PyApk',
-    download_url='https://github.com/psuzn/PyApk',
-    keywords=['adb', 'apk', 'install', 'android'],  # arbitrary keywords
+    author_email="spoudel347@gmail.com",
+    url='https://github.com/psuzn/romoNepali',
+    download_url='https://github.com/psuzn/romoNepali',
+    keywords=['unicode', 'Nepali', 'Romonised', 'Nepal'],  # arbitrary keywords
     install_requires=[
+        "requests",
+        "pynput"
     ],
     classifiers=[
         'Environment :: Console',
