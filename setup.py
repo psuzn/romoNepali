@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name='pyapk',
     packages=find_packages(),
-    version='v1.0',
+    version='0.0.1',
     license='MIT',
     description='A simple program to install apks from a directory to android phone via adbSmall python program to install all apks on a directory(including apks in sub-directory of it) in your pc to android phones.',
     author='Sujan Poudel',
