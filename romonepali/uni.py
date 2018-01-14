@@ -1,25 +1,13 @@
-pip_modules=["requests","time","sys","subprocess","pynput"]
-pip_installInstructions=["1.Install pip in your system",
-						 "2.Run the following command from the uni-nepal directory",
-						 "\tpip install -r requirements.txt",
-						 "\t(try with sudo if any error occurred)"]
-npm_modules=["http","querystring"]
-npm_installInstructions=["1.Install node and npm in your system",
-						 "2.Run the following command from the uni-nepal directory",
-						 "\tcat requirements-npm.txt | xargs npm install -g",
-						 "\t(try with '..| sudo xargs..' if any error occurred)"]
+pip_modules=["requests","pynput"]
 try:
 	import requests,time,sys
 	import subprocess as sp
 	from pynput.keyboard import Key, Controller,Listener
 except ImportError: #detection of modules
 	print("Some modules are not installed")
-	print("[Required modules for python]:")
+	print("[Required modules]:")
 	for module in pip_modules:
 		print(" {}".format(module))
-	print("\n#process to install")
-	for line in pip_installInstructions:
-		print(" {}".format(line))
 	exit()
 
 keyboard =Controller()

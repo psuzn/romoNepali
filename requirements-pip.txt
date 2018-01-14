@@ -1,7 +1,0 @@
-#
-####### requirements.txt for uni-nepal #######
-#
-###### modules ######
-requests
-subprocess
-pynput
