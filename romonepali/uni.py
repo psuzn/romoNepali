@@ -1,3 +1,12 @@
+'''
+File: uni.py
+Created Date: Monday January 15th 2018
+Author: Sujan Poudel
+Github: https://github.com/psuzn
+Last Modified:Monday, January 15th 2018, 9:50:41 am
+Copyright (c) 2018 https://github.com/psuzn
+'''
+
 #Constants
 PORT=8058 #port for the node server
 SMARTCONVERT=True; #smart convert

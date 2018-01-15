@@ -1,3 +1,12 @@
+'''
+File: setup.py
+Created Date: Monday January 15th 2018
+Author: Sujan Poudel
+Github: https://github.com/psuzn
+Last Modified:Monday, January 15th 2018, 9:50:55 am
+Copyright (c) 2018 https://github.com/psuzn
+'''
+
 from setuptools import setup, find_packages
 
 setup(
