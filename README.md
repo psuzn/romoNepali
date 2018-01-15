@@ -10,7 +10,7 @@ Romonised nepali input method for LInux.This uses [romonisednepali](https://gith
 - [Contributing](#contributing)
 
 ## Installation
-(This is in  beta version so might not be stable.)
+(This is in  alpha version so might not be stable.)
 
 <B>1.First install [node](http://blog.teamtreehouse.com/install-node-js-npm-linux) (also npm) and [pip](https://www.tecmint.com/install-pip-in-linux/).</B>
 
@@ -62,7 +62,7 @@ $ romonepali -v
 ```
 
 ## Support
-This is in  beta version and might cause some problem. so you can help me make it stable.
+This is in  alpha version and might cause some problem. so you can help me make it stable.
 
 
 Please [open an issue](https://github.com/psuzn/romoNepali/issues/new) for support.
