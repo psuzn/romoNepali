@@ -3,9 +3,9 @@ from setuptools import setup, find_packages
 setup(
     name='romonepali',
     packages=find_packages(),
-    version='0.0.1',
+    version='0.0.2',
     license='MIT',
-    description='A simple program to install apks from a directory to android phone via adbSmall python program to install all apks on a directory(including apks in sub-directory of it) in your pc to android phones.',
+    description='Romonised nepali input method for LInux.',
     author='Sujan Poudel',
     author_email="spoudel347@gmail.com",
     url='https://github.com/psuzn/romoNepali',
