@@ -12,7 +12,7 @@ from setuptools import setup, find_packages
 setup(
     name='romonepali',
     packages=find_packages(),
-    version='0.0.2',
+    version='0.0.3',
     license='MIT',
     description='Romonised nepali input method for LInux.',
     author='Sujan Poudel',
