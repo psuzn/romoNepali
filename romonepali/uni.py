@@ -29,7 +29,13 @@ def mvv(*message): #print the message if -v flag is given
 
 def startNodeServer(): #start the node server without any logging on console
 	global nodeServer
-	nodeServer=sp.Popen(["romonisednepali",],stdout=sp.PIPE,stderr=sp.PIPE,encoding='utf-8')
+	try:
+		nodeServer=sp.Popen(["romonisednepali",],stdout=sp.PIPE,stderr=sp.PIPE,encoding='utf-8')
+	except NotADirectoryError:
+		print("node server can't be started ..  ")
+		print("node module romonisednepali doesn't exist run the following command to install it")
+		print("\n\tsudo npm install -g romonisednepali\n")
+		exit()
 
 def typeUnicode(code): #tyoe the unicode character corresponding to unicode value with Ctrl+Shift+u and unicode value (in hex)
 	keyboard.press(Key.ctrl)
@@ -136,7 +142,6 @@ def init():
 			main()
 		else:
 			print("node server can't be started ..  ")
-			print('Make sure that node module "romonisednepali" is installed globally')
 			exit()
 
 	except KeyboardInterrupt:
@@ -146,6 +151,6 @@ def init():
 		keyboard.release(Key.backspace)
 
 	finally:
-		if nodeServer:
+		if 'nodeServer' in globals():
 			if nodeServer.poll() is None:
 				nodeServer.terminate() #if any error occurred kill the nodeserver
